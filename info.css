@@ -1,0 +1,579 @@
+* {
+    box-sizing: border-box;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+#infoBox {
+    position: fixed;
+    display: grid;
+
+    /* size */
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 120px 500px;
+    border-radius: 10px;
+    z-index: 999;
+
+    /* box-shadow: 0 10px 40px 5px rgba(43, 56, 90, 1); */
+
+    visibility: hidden;
+    opacity: 0;
+}
+
+#infoBox.active {
+    transition: all 0.25s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.headerInfo {
+    position: relative; 
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    grid-template-rows: 1fr 1fr;     
+    column-gap: 20px;
+    overflow: hidden;
+
+    /* size */
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 10px 0px 0px;
+    z-index: 999;
+
+    /* color */
+    background-color: #ffffff;
+    border: #2b385a solid 1px;
+}
+
+.headerInfo[data-type = "actinides"] {
+    background-color: #321731;
+    color: #f9a8d4;
+}
+
+.headerInfo[data-type = "lanthanides"] {
+    background-color: #2c1840;
+    color: #f0abfc;
+}
+
+.headerInfo[data-type = "transition metal"] {
+    background-color: #132247;
+    color: #93c5fd;
+}
+
+.headerInfo[data-type = "halogen"] {
+    background-color: #11283b;
+    color: #67e8f9;
+}
+
+.headerInfo[data-type = "post-transition metal"] {
+    background-color: #1d283b;
+    color: #cbd5e1;
+}
+
+.headerInfo[data-type = "metalloid"] {
+    background-color: #2e2022;
+    color: #fcd34d;
+}
+
+.headerInfo[data-type = "nonmetal"] {
+    background-color: #0e3139;
+    color: #6ee7b7;
+}
+
+.headerInfo[data-type = "noble gas"] {
+    background-color: #21194a;
+    color: #c4b5fd;
+}
+
+.headerInfo[data-type = "alkali metal"] {
+    background-color: #33162e;
+    color: #fda4af;
+}
+
+.headerInfo[data-type = "alkaline earth metal"] {
+    background-color: #2f1e22;
+    color: #fdba74;
+}
+
+.headerInfo .symbol {
+    display: inline-flex;
+    
+    /* size */
+    padding: 5px 23px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    grid-column: 1;     
+    grid-row: 1 / 3;
+    align-self: center;
+    margin-left: 15px;
+    
+    /* color */
+    background-color: #081a25;
+    
+    /* font */
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.headerInfo .name {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin-top: 10px;
+    
+    /* color */
+    color:  white;
+    
+    /* font */
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.headerInfo .bottom {
+    display: inline-flex;
+    overflow-x: auto;
+    
+    /* size */
+    grid-column: 2;     
+    grid-row: 2;        
+    align-self: start;
+    gap: 8px;
+
+    /* font */
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.headerInfo .number {
+    display: inline-flex;
+
+    /* size */
+    padding: 5px 10px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    /* color */
+    background-color: #081a25;
+}
+
+.headerInfo .mass {
+    display: inline-flex;
+
+    /* size */
+    padding: 5px 10px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    /* color */
+    background-color: #081a25;
+}
+
+.headerInfo .group {
+    display: inline-flex;
+
+    /* size */
+    padding: 5px 10px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    /* color */
+    background-color: #081a25;
+}
+
+.headerInfo .cycle {
+    display: inline-flex;
+
+    /* size */
+    padding: 5px 10px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    /* color */
+    background-color: #081a25;
+}
+
+.headerInfo .type .typeText {
+    display: inline-flex;
+
+    /* size */
+    padding: 5px 10px;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    /* color */
+    background-color: #081a25;
+}
+
+.headerInfo .type .typeDetail {
+    position: fixed;
+    /* size */
+    pointer-events: none;
+    border-radius: 10px;
+    z-index: 1000;
+    padding: 5px;
+    max-width: 175px;
+
+    /* color */
+    background-color: #081a25;
+    border: #2b385a solid 1px;
+
+    visibility: hidden;
+    opacity: 0;
+}
+
+.headerInfo .type .typeDetail.active {
+    transition: all 0.35s ease;
+    visibility: visible;
+    opacity: 1;
+}
+
+.mainInfo {
+    position: relative;
+    display: grid;
+    grid-template-rows: 4fr 1fr 7fr;
+    row-gap: 10px;
+
+    /* size */
+    grid-row: 2;
+    grid-column: 2;
+    height: 100%;
+    border-radius: 0px 0px 10px 0px;
+    padding: 15px;
+    
+
+    /* color */
+    background-color: #0f172a;
+    border: #2b385a solid 1px;
+}
+
+.mainInfo .characteristic {
+    grid-row: 1;
+
+    /* size */
+    padding: 10px;
+    border-radius: 10px;
+    /* height: fit-content; */
+    
+    /* color */
+    color: white;
+    border: #2b385a solid 1px;
+    background-color: #141f3a;
+
+    /* font */
+    
+}
+
+.mainInfo .popularCompound {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    
+    /* size */
+    row-gap: 5px;
+    padding: 7px 3px 0px 3px;
+    border-radius: 10px;
+
+    /* font */
+}
+
+.mainInfo .popularCompound .text {
+    /* color */
+    color: rgb(103, 232, 249);
+
+    /* font */
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.mainInfo .popularCompound .compuonds {
+    display: flex;
+    /* justify-content: center;
+    align-items: center;     */
+    
+    /* size */
+    gap: 10px;
+
+    /* color */
+    color: white;
+
+    /* font */
+    font-size: 18px;
+}
+
+.mainInfo .popularCompound .compuonds span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* size */
+    border: #2b385a solid 1px;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 35px;
+
+    /* color */
+    background-color: #141f3a;
+
+    /* font */
+}
+
+.mainInfo .popularCompound .compuondDetail {
+    position: fixed;
+    padding: 5px;
+
+    /* size */
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    max-width: 300px;
+
+    /* color */
+    background-color: #141f3a;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+
+    /* font */
+    font-size: 15px;
+}
+
+.mainInfo .popularCompound .compuondDetail.active {
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.mainInfo .popularReaction {  
+    grid-row: 3;
+    display: grid;
+    flex-direction: column;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 30px 1fr;
+
+    /* size */
+    row-gap: 5px;
+    padding: 7px 3px 0px 3px;
+    border-radius: 10px;
+
+    /* font */
+}
+
+.mainInfo .popularReaction .text {
+    grid-row: 1;
+    grid-column: 1;
+
+    /* color */
+    color: rgb(103, 232, 249);
+
+    /* font */
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.mainInfo .popularReaction .reactions {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    /* size */
+    row-gap: 10px;
+    padding: 0px 10px 0px 5px;
+    grid-row: 2;
+    grid-column: 1;
+
+    /* color */
+    color: white;
+}
+
+.mainInfo .popularReaction .reaction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* size */
+    width: 100%;
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    padding: 15px 10px;
+
+    /* color */
+    background-color: #141f3a;
+    color: white;
+
+    /* font */
+    font-size: 20px;
+}
+
+.mainInfo .popularReaction .reactionDetails {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    /* size */
+    grid-row: 2;
+    grid-column: 2;
+    row-gap: 10px;
+    
+    /* color */
+    color: white;
+}
+
+.mainInfo .popularReaction .reactionDetails .reactionDetail {
+    display: flex;
+
+    /* size */
+    border: #2b385a solid 1px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    
+    /* color */
+    background-color: #141f3a;
+    
+    /* font */
+    font-size: 15px;
+}
+
+.elementModel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* size */
+    grid-row: 1 / 3;
+    grid-column: 1;
+    border-radius: 10px 0px 0px 10px;
+
+    /* color */
+    background-color: #0f172a;
+    border: #2b385a solid 1px;
+}
+
+.elementModel .uncleus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* size */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    /* color */
+    background-color: red;
+    box-shadow: 0 0 10px red;
+}
+
+.elementModel .orbit {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* size */
+    border-radius: 50%;
+    border: white solid 1px;
+
+}
+
+.elementModel .electronLayer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Sử dụng translate để căn giữa layer chứa trước khi chạy animation spin */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* animation: spin 5s linear infinite; */
+    pointer-events: none;
+    z-index: 999;
+}
+
+.elementModel .electron {
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00ffff;
+    margin-top: -5px; 
+    margin-left: -5px;
+}
+
+#blurBackground {
+    position: fixed;
+
+    /* size */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+
+    /* color */
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.25s ease;
+}
+
+#blurBackground.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#closeButton {
+    position: absolute;
+
+    /* size */
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+
+    /* color */
+    background-color: rgba(255, 255, 255, 0.07);
+    border: rgba(0, 0, 0, 0);
+    color: #ffffff;
+
+    /* font */
+    font-size: 20px;
+}

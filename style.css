@@ -1,0 +1,293 @@
+* {
+    font-family: 'Space Grotesk', sans-serif;
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+}
+
+body {
+    background-color: #0e1629;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    height: 8px;   /* ngang */
+    width: 8px;    /* dọc */
+}
+
+/* nền */
+::-webkit-scrollbar-track {
+    background: #0f172a;
+    border-radius: 10px;
+}
+
+/* thanh kéo */
+::-webkit-scrollbar-thumb {
+    background: #2b385a;
+    border-radius: 10px;
+}
+
+/* hover */
+::-webkit-scrollbar-thumb.active {
+    background: #3b4b75; 
+}   
+
+.typeTable {
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 22px;
+    padding: 15px 20px;
+    top: 35px;
+    left: 305px;
+
+    width: 600px;
+    height: 170px;
+    border-radius: 10px;
+    z-index: 998;
+
+    background-color: rgba(255, 255, 255, 0.07);
+    color: white;
+}
+
+.typeTable .typ {
+    display: flex;
+    gap: 10px;
+}
+
+.typeTable .colorBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 7px;
+    flex-shrink: 0;
+}
+
+.elements {
+    display: grid;
+    grid-template-columns: repeat(18, 61px);
+    grid-template-rows: repeat(6, 75px);
+    gap: 5px;
+    padding: 10px;
+}
+
+.bottomElements {
+    display: grid;
+    grid-template-columns: repeat(15, 61px);
+    grid-template-rows: 75px 75px;
+    margin-top: 10px;
+    margin-left: 65px;
+    gap: 5px;
+}
+
+.elements button,
+.bottomElements button {
+    /* size */
+    width: 61px;
+    height: 75px;
+    position: relative;
+    /* left: 10px;
+    top: 100px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* color */
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 1);
+    border: #ffffff solid 2px;
+    border-radius: 10px; 
+    
+    transition: all 0.25s ease;
+}
+
+.elements button[data-type="actinides"] {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.elements button[data-type="lanthanides"] {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.elements button[data-type="actinides"],
+.typeTable .colorBox[data-type="actinides"],
+.bottomElements button[data-type="actinides"] {
+    color: #f9a8d4;
+    background-color: rgba(131, 24, 67, 0.6);
+    border: #ec4899 solid 2px;
+}
+
+.elements button[data-type = "actinides"].active,
+.bottomElements button[data-type="actinides"].active {
+    box-shadow: 0 0 10px rgba(247, 97, 172, 0.7),
+                0 0 20px rgba(247, 97, 172, 0.4),
+                0 0 30px rgba(247, 97, 172, 0.1);
+}
+
+.elements button[data-type = "lanthanides"],
+.typeTable .colorBox[data-type="lanthanides"],
+.bottomElements button[data-type="lanthanides"] {
+    color: #f0abfc;
+    background-color: rgba(112, 26, 117, 0.6);
+    border: #d946ef solid 2px;
+}
+
+.elements button[data-type = "lanthanides"].active,
+.bottomElements button[data-type="lanthanides"].active {
+    box-shadow: 0 0 10px rgba(233, 93, 255, 0.7),
+                0 0 20px rgba(233, 93, 255, 0.4),
+                0 0 30px rgba(233, 93, 255, 0.1);
+}
+
+.elements button[data-type = "transition metal"],
+.typeTable .colorBox[data-type="transition metal"] {
+    color: #93c5fd;
+    background-color: rgba(30, 58, 138, 0.6);
+    border: #3b82f6 solid 2px;
+}
+
+.elements button[data-type = "transition metal"].active {
+    box-shadow: 0 0 10px rgba(49, 127, 251, 0.7),
+                0 0 20px rgba(49, 127, 251, 0.4),
+                0 0 30px rgba(49, 127, 251, 0.1);
+}
+
+.elements button[data-type = "halogen"],
+.typeTable .colorBox[data-type="halogen"] {
+    color: #67e8f9;
+    background-color: rgba(22, 78, 99, 0.6);
+    border: #06b6d4 solid 2px;
+}
+
+.elements button[data-type = "halogen"].active {
+    box-shadow: 0 0 10px rgba(10, 204, 238, 0.7),
+                0 0 20px rgba(10, 204, 238, 0.4),
+                0 0 30px rgba(10, 204, 238, 0.1);
+}
+
+.elements button[data-type = "post-transition metal"],
+.typeTable .colorBox[data-type="post-transition metal"] {
+    color: #cbd5e1;
+    background-color: rgba(51, 65, 85, 0.6);
+    border: #94a3b8 solid 2px;
+}
+
+.elements button[data-type = "post-transition metal"].active {
+    box-shadow: 0 0 10px rgba(177, 194, 219, 0.7),
+                0 0 20px rgba(177, 194, 219, 0.4),
+                0 0 30px rgba(177, 194, 219, 0.1);
+}
+
+.elements button[data-type = "metalloid"],
+.typeTable .colorBox[data-type="metalloid"] {
+    color: #fcd34d;
+    background-color: rgba(120, 53, 15, 0.6);
+    border: #f59e0b solid 2px;
+}
+
+.elements button[data-type = "metalloid"].active {
+    box-shadow: 0 0 10px rgba(246, 166, 29, 0.7),
+                0 0 20px rgba(246, 166, 29, 0.4),
+                0 0 30px rgba(246, 166, 29, 0.1);
+}
+
+.elements button[data-type = "nonmetal"],
+.typeTable .colorBox[data-type="nonmetal"] {
+    color: #6ee7b7;
+    background-color: rgba(6, 78, 59, 0.6);
+    border: #10b981 solid 2px;
+}
+
+.elements button[data-type = "nonmetal"].active {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.7),
+                0 0 20px rgba(16, 185, 129, 0.4),
+                0 0 30px rgba(16, 185, 129, 0.1);
+}
+
+.elements button[data-type = "alkali metal"],
+.typeTable .colorBox[data-type="alkali metal"] {
+    color: #fda4af;
+    background-color: rgba(136, 19, 55, 0.5);
+    border: #f43f5e solid 2px;
+}
+
+.elements button[data-type = "alkali metal"].active {
+    box-shadow: 0 0 10px rgba(208, 79, 118, 0.7),
+                0 0 20px rgba(208, 79, 118, 0.4),
+                0 0 30px rgba(208, 79, 118, 0.1);
+}
+
+.elements button[data-type = "noble gas"],
+.typeTable .colorBox[data-type="noble gas"] {
+    color: #c4b5fd;
+    background-color: rgba(76, 29, 149, 0.5);
+    border: #8b5cf6 solid 2px;
+}
+
+.elements button[data-type = "noble gas"].active {
+    box-shadow: 0 0 10px rgba(163, 129, 244, 0.7),
+                0 0 20px rgba(163, 129, 244, 0.4),
+                0 0 30px rgba(163, 129, 244, 0.1);
+}
+
+.elements button[data-type = "alkaline earth metal"],
+.typeTable .colorBox[data-type="alkaline earth metal"] {
+    color: #fdba74;
+    background-color: rgba(124, 45, 18, 0.5);
+    border: #f97316 solid 2px;
+}
+
+.elements button[data-type = "alkaline earth metal"].active {
+    box-shadow: 0 0 10px rgba(246, 137, 60, 0.7),
+                0 0 20px rgba(246, 137, 60, 0.4),
+                0 0 30px rgba(246, 137, 60, 0.1);
+}
+
+.elements button .number,
+.bottomElements button .number{
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    font-size: 10px;
+}
+
+.elements button .symbol,
+.bottomElements button .symbol {
+    position: absolute;
+    top: 5px;
+    font-size: 37px;
+    font-weight: bold;
+}
+
+.elements button .name,
+.bottomElements button .name {
+    position: absolute;
+    top: 49px;
+    font-size: 9px;
+}
+
+.elements button .mass,
+.bottomElements button .mass {
+    position: absolute;
+    top: 60px;
+    font-size: 8px;
+}
+
+.elements button.active,
+.bottomElements button.active {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.elements button:hover,
+.bottomElements button:hover {
+    transform: scale(1.2);
+    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.1); */
+    z-index: 10;
+}

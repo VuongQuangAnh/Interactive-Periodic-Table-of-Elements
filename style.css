@@ -36,13 +36,13 @@ body {
 }   
 
 .typeTable {
-    position: fixed;
+    position: absolute;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px 22px;
     padding: 15px 20px;
     top: 35px;
-    left: 305px;
+    left: 21%;
 
     width: 600px;
     height: 170px;

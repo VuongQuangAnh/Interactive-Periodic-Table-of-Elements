@@ -17,7 +17,7 @@ Element classification (metal, nonmetal, noble gas, etc.)
 🛠 Tech Stack
 HTML
 CSS
-JavaScript
+JavaScripthttps://interactive-periodic-table-of-eleme.vercel.app/
 📷 Preview
 
 <img width="1536" height="864" alt="image" src="https://github.com/user-attachments/assets/0a990035-c305-4b37-a92b-45bd984315cd" />
@@ -27,7 +27,7 @@ git clone https://github.com/VuongQuangAnh/Interactive-Periodic-Table-of-Element
 
 Open index.html in your browser.
 
-You can try out my project at : https://interactive-periodic-table-of-elements-o2z93aih7.vercel.app/
+You can try out my project at : https://interactive-periodic-table-of-eleme.vercel.app/
 
 🎯 Future Plans
 Add search & filter
